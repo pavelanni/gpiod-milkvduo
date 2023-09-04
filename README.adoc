@@ -57,3 +57,7 @@ func main() {
 Here is the official Milk-V Duo documentation: https://milkv.io/docs/duo/overview
 
 More information and guides are available here: https://spotpear.com/index/product/detail/id/1296.html (check the RESOURCES tab for the guides)
+
+=== Pinout
+
+image::pinout.webp[]
