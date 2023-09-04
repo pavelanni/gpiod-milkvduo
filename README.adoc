@@ -1,6 +1,9 @@
-= Pin mappings for the Milk-V Duo board to use with Go gpiod library
+= Pin mappings for Milk-V Duo
+:imagesdir: ./images
 
-I received a new RISC-V-based board from Milk-V and started using this library to work with GPIO: https://github.com/warthog618/gpiod
+image::duo-v1.2.png[Milk-V Duo,width=400]
+
+I received a new RISC-V-based board from Milk-V and started using this library to work with GPIO: https://github.com/warthog618/gpiod.
 Apparently, the naming scheme in Duo is different from those used in RPi and Banana Pi for which the pin mappings are provided.
 
 I created this tiny module to support Milk-V Duo mappings.
@@ -49,4 +52,8 @@ func main() {
 }
 ----
 
+== Board info
 
+Here is the official Milk-V Duo documentation: https://milkv.io/docs/duo/overview
+
+More information and guides are available here: https://spotpear.com/index/product/detail/id/1296.html (check the RESOURCES tab for the guides)
