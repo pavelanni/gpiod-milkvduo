@@ -1,0 +1,1 @@
+= Pin mappings for the Milk-V Duo board to use with Go gpiod library
