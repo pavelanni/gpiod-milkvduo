@@ -1,1 +1,28 @@
 = Pin mappings for the Milk-V Duo board to use with Go gpiod library
+
+I received a new RISC-V-based board from Milk-V and started using this library to work with GPIO: https://github.com/warthog618/gpiod
+Apparently, the naming scheme in Duo is different from those used in RPi and Banana Pi for which the pin mappings are provided.
+
+I created this tiny module to support Milk-V Duo mappings.
+It's not required to be part of the `gpiod` module so it can be imported separately.
+Here is how I did it in my code:
+
+[source,go]
+----
+package main
+
+import (
+. . . .
+	"github.com/pavelanni/gpiod-milkvduo"
+	"github.com/warthog618/gpiod"
+)
+----
+
+== Pin naming in Milk-V Duo
+
+In this board there are 5 GPIO chips (`gpiochip0` to `gpiochip4`). 
+The pins are named like `GPIOA14`, `GPIOC9`, or `PWR_GPIO21` and they are served by different chips. 
+In this case the names above would be translated to `gpiochip0` + offset 14, `gpiochip2` + offset 9, 
+and `gpiochip4` + offset 21 respectively.
+
+
