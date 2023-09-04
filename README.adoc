@@ -1,5 +1,6 @@
 = Pin mappings for Milk-V Duo
 :imagesdir: ./images
+:source-highlighter: highlight.js
 
 image::duo-v1.2.png[Milk-V Duo,width=400]
 
@@ -57,6 +58,9 @@ func main() {
 Here is the official Milk-V Duo documentation: https://milkv.io/docs/duo/overview
 
 More information and guides are available here: https://spotpear.com/index/product/detail/id/1296.html (check the RESOURCES tab for the guides)
+
+This repo contains datasheets and other info for the CPU/TPU used in Duo: https://github.com/sophgocommunity/Duo_Doc/tree/main
+
 
 === Pinout
 

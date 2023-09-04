@@ -24,6 +24,9 @@ var GPIO_TO_CHIP = map[string]string{
 // ErrInvalid indicates the pin name does not match a known pin.
 var ErrInvalid = errors.New("invalid pin name/number")
 
+// rangeCheck checks if the given integer is within the valid range.
+//
+// It takes an integer parameter 'p' and returns an integer and an error.
 func rangeCheck(p int) (int, error) {
 	if p < 2 || p > 29 {
 		return 0, ErrInvalid
@@ -31,6 +34,9 @@ func rangeCheck(p int) (int, error) {
 	return p, nil
 }
 
+// PinLineID generates a LineID from a given string.
+//
+// Takes a string as input and returns a LineID and an error.
 func PinLineID(s string) (LineID, error) {
 	re := regexp.MustCompile("([A-Z_]+)([0-9]{1,2})")
 	m := re.FindStringSubmatch(s)
@@ -55,8 +61,10 @@ func PinLineID(s string) (LineID, error) {
 	}, nil
 }
 
-// MustPinGpio converts the string to the corresponding pin number or panics if that
-// is not possible.
+// MustPinGpio generates a LineID from a string representation of a GPIO pin and panics if there is an error.
+//
+// s: the string representation of the GPIO pin.
+// Returns: the LineID generated from the string representation of the GPIO pin.
 func MustPinGpio(s string) LineID {
 	v, err := PinLineID(s)
 	if err != nil {
