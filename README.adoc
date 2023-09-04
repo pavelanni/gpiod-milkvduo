@@ -5,18 +5,7 @@ Apparently, the naming scheme in Duo is different from those used in RPi and Ban
 
 I created this tiny module to support Milk-V Duo mappings.
 It's not required to be part of the `gpiod` module so it can be imported separately.
-Here is how I did it in my code:
-
-[source,go]
-----
-package main
-
-import (
-. . . .
-	"github.com/pavelanni/gpiod-milkvduo"
-	"github.com/warthog618/gpiod"
-)
-----
+See the example below.
 
 == Pin naming in Milk-V Duo
 
@@ -27,5 +16,37 @@ and `gpiochip4` + offset 21 respectively.
 
 == Example
 
+
+[source,go]
+----
+package main
+
+import (
+	"fmt"
+	"log"
+	"os"
+	"os/signal"
+	"syscall"
+	"time"
+
+	milkvduo "github.com/pavelanni/gpiod-milkvduo"
+	"github.com/warthog618/gpiod"
+)
+
+func main() {
+	pin := "PWR_GPIO21" // this could be "GPIOA14" or "GPIOC9"
+	lineId, err := milkvduo.PinLineID(pin)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	l, err := gpiod.RequestLine(lineId.Chip, lineId.Offset, gpiod.AsOutput())
+	if err != nil {
+		log.Fatal(err)
+	}
+
+// The rest is the same: you set the line's value, etc.
+}
+----
 
 
