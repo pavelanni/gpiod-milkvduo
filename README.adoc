@@ -20,9 +20,12 @@ import (
 
 == Pin naming in Milk-V Duo
 
-In this board there are 5 GPIO chips (`gpiochip0` to `gpiochip4`). 
-The pins are named like `GPIOA14`, `GPIOC9`, or `PWR_GPIO21` and they are served by different chips. 
-In this case the names above would be translated to `gpiochip0` + offset 14, `gpiochip2` + offset 9, 
+In this board there are 5 GPIO chips (`gpiochip0` to `gpiochip4`).
+The pins are named like `GPIOA14`, `GPIOC9`, or `PWR_GPIO21` and they are served by different chips.
+In this case the names above would be translated to `gpiochip0` + offset 14, `gpiochip2` + offset 9,
 and `gpiochip4` + offset 21 respectively.
+
+== Example
+
 
 

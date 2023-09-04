@@ -8,7 +8,7 @@ import (
 	"strconv"
 )
 
-type GPIO struct {
+type LineID struct {
 	Chip   string
 	Offset int
 }
@@ -22,7 +22,7 @@ var GPIO_TO_CHIP = map[string]string{
 }
 
 // ErrInvalid indicates the pin name does not match a known pin.
-var ErrInvalid = errors.New("invalid pin number")
+var ErrInvalid = errors.New("invalid pin name/number")
 
 func rangeCheck(p int) (int, error) {
 	if p < 2 || p > 29 {
@@ -31,25 +31,25 @@ func rangeCheck(p int) (int, error) {
 	return p, nil
 }
 
-func PinGpio(s string) (GPIO, error) {
+func PinLineID(s string) (LineID, error) {
 	re := regexp.MustCompile("([A-Z_]+)([0-9]{1,2})")
 	m := re.FindStringSubmatch(s)
 	if m == nil {
-		return GPIO{}, ErrInvalid
+		return LineID{}, ErrInvalid
 	}
 	chip, ok := GPIO_TO_CHIP[m[1]]
 	if !ok {
-		return GPIO{}, ErrInvalid
+		return LineID{}, ErrInvalid
 	}
 	offset, err := strconv.Atoi(m[2])
 	if err != nil {
-		return GPIO{}, ErrInvalid
+		return LineID{}, ErrInvalid
 	}
 	offset, err = rangeCheck(offset)
 	if err != nil {
-		return GPIO{}, ErrInvalid
+		return LineID{}, ErrInvalid
 	}
-	return GPIO{
+	return LineID{
 		Chip:   chip,
 		Offset: offset,
 	}, nil
@@ -57,8 +57,8 @@ func PinGpio(s string) (GPIO, error) {
 
 // MustPinGpio converts the string to the corresponding pin number or panics if that
 // is not possible.
-func MustPinGpio(s string) GPIO {
-	v, err := PinGpio(s)
+func MustPinGpio(s string) LineID {
+	v, err := PinLineID(s)
 	if err != nil {
 		panic(err)
 	}
